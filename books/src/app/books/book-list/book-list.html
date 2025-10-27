@@ -10,17 +10,21 @@
 @else {
 <table>
   <tr>
-    <td class=" zelle">ISBN</td>
+    <td class="zelle">ISBN</td>
     <td class="zelle">Title</td>
     <td class="zelle">Author</td>
     <td class="zelle">Price</td>
+    <td class="zelle">Cover</td>
   </tr>
   @for (book of books; track book) {
   <tr>
     <td class="zelle">{{ book.isbn }}</td>
     <td class="zelle">{{ book.title }}</td>
     <td class="zelle">{{ book.author }}</td>
-    <td class="zelle">{{ book.price }}</td>
+    <td class="zelle" [ngClass]="{'on-discount': book.price < 10}">{{ book.price }}</td>
+    <td class="zelle">
+      <img [src]="book.coverUrl" [style.width.px]="50" />
+    </td>
   </tr>
   }
 </table>
