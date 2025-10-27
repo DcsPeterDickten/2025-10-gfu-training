@@ -2,6 +2,10 @@
 
 <button (click)='toggleCover()'>Cover {{coverIsVisible ? 'aus' : 'ein'}}blenden</button>
 
+<p>
+  Filtern nach:
+  <input type="text" [(ngModel)]="filterText" (ngModelChange)="updateFilter($event)" />
+</p>
 
 @if (books.length === 0) {
 <p>Keine Bücher gefunden</p>

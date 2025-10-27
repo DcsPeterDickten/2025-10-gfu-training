@@ -1,9 +1,9 @@
 import { JsonPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'books-list',
-  imports: [JsonPipe, NgClass],
+  imports: [NgClass, FormsModule],
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
@@ -33,11 +33,16 @@ export class BookList {
   ];
 
   protected coverIsVisible = true;
+  protected filterText: string = '';
 
   toggleCover() {
     // this.showCover = !this.showCover;
     console.log('toggleCover');
     this.coverIsVisible = !this.coverIsVisible;
     // this.books[0].price += 1;
+  }
+
+  updateFilter(bla: any) {
+    console.log('updateFilter', bla, this.filterText);
   }
 }
