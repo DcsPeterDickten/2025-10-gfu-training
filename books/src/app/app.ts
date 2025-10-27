@@ -5,8 +5,10 @@ import { RouterOutlet } from '@angular/router';
   selector: 'books-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('books');
+  //
+  protected readonly title2 = signal('books :-) '); // reactive state
+  title: string = 'books :-)'; // plain state
 }
