@@ -1,0 +1,27 @@
+<p>book-list works!</p>
+
+{{ books | json}}
+<hr />
+
+
+@if (books.length === 0) {
+<p>Keine Bücher gefunden</p>
+}
+@else {
+<table>
+  <tr>
+    <td class=" zelle">ISBN</td>
+    <td class="zelle">Title</td>
+    <td class="zelle">Author</td>
+    <td class="zelle">Price</td>
+  </tr>
+  @for (book of books; track book) {
+  <tr>
+    <td class="zelle">{{ book.isbn }}</td>
+    <td class="zelle">{{ book.title }}</td>
+    <td class="zelle">{{ book.author }}</td>
+    <td class="zelle">{{ book.price }}</td>
+  </tr>
+  }
+</table>
+}
