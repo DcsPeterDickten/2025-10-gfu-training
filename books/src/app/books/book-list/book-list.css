@@ -1,3 +1,6 @@
 td.on-discount {
-  color: red;
+  color: green;
+}
+tr {
+  height: 70px;
 }

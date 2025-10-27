@@ -31,4 +31,13 @@ export class BookList {
       coverUrl: 'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg',
     },
   ];
+
+  protected coverIsVisible = true;
+
+  toggleCover() {
+    // this.showCover = !this.showCover;
+    console.log('toggleCover');
+    this.coverIsVisible = !this.coverIsVisible;
+    // this.books[0].price += 1;
+  }
 }

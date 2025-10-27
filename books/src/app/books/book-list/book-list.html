@@ -1,7 +1,6 @@
 <p>book-list works!</p>
 
-{{ books | json}}
-<hr />
+<button (click)='toggleCover()'>Cover {{coverIsVisible ? 'aus' : 'ein'}}blenden</button>
 
 
 @if (books.length === 0) {
@@ -23,7 +22,9 @@
     <td class="zelle">{{ book.author }}</td>
     <td class="zelle" [ngClass]="{'on-discount': book.price < 10}">{{ book.price }}</td>
     <td class="zelle">
+      @if (coverIsVisible) {
       <img [src]="book.coverUrl" [style.width.px]="50" />
+      }
     </td>
   </tr>
   }
