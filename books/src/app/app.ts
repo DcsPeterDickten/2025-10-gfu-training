@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { BookList } from './books/book-list/book-list';
 import { Calculator } from './shared/calculator/calculator';
 
 @Component({
   selector: 'books-root',
-  imports: [RouterOutlet, BookList, Calculator],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

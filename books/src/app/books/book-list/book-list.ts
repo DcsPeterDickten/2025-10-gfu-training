@@ -1,14 +1,14 @@
-import { CurrencyPipe, JsonPipe, NgClass } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Book } from './book';
-import { BookFilterPipe } from '../book-filter-pipe';
 import { Rating } from '../../shared/rating/rating';
 import { BookData } from '../book-data';
+import { BookFilterPipe } from '../book-filter-pipe';
+import { Book } from './book';
 
 @Component({
   selector: 'books-list',
-  imports: [NgClass, FormsModule, CurrencyPipe, BookFilterPipe, Rating, JsonPipe],
+  imports: [NgClass, FormsModule, CurrencyPipe, BookFilterPipe, Rating],
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
