@@ -1,0 +1,10 @@
+<p>
+  <input type="number" [(ngModel)]="x" />
+  <input type="number" [(ngModel)]="y" />
+</p>
+<p>
+  <button (click)="add()">[+]</button>
+  <button (click)="substract()">[-]</button>
+  <button (click)="clear()">[C]</button>
+</p>
+<p>Ergebnis:{{ result }}</p>
