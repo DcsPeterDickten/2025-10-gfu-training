@@ -38,7 +38,11 @@ export class BookData {
   }
   async deleteBook(isbn: string): Promise<string> {
     try {
-      const response: Response = await fetch(`${this.URL}/${isbn}`, { method: 'DELETE' });
+      const loeschUrl = this.URL + '/' + isbn;
+
+      const response: Response = await fetch(loeschUrl, {
+        method: 'DELETE',
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
