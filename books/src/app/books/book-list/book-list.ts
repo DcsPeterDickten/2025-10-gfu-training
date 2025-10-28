@@ -1,14 +1,17 @@
-import { JsonPipe, NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { CurrencyPipe, NgClass } from '@angular/common';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Book } from './book';
+import { BookFilterPipe } from '../book-filter-pipe';
+
 @Component({
   selector: 'books-list',
-  imports: [NgClass, FormsModule],
+  imports: [NgClass, FormsModule, CurrencyPipe, BookFilterPipe],
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
-export class BookList {
-  books: any[] = [
+export class BookList implements OnChanges, OnInit, OnDestroy {
+  books: Book[] = [
     {
       isbn: 1,
       title: 'Angular 18',
@@ -34,6 +37,25 @@ export class BookList {
 
   protected coverIsVisible = true;
   protected filterText: string = '';
+
+  constructor() {
+    console.log('BookList constructor');
+  }
+
+  // <books-list customerId=42>
+  // </books-list>
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    console.log('BookList ngOnChanges', changes);
+  }
+
+  public ngOnInit(): void {
+    console.log('BookList ngOnInit');
+  }
+
+  public ngOnDestroy(): void {
+    console.log('BookList ngOnDestroy');
+  }
 
   toggleCover() {
     // this.showCover = !this.showCover;

@@ -19,12 +19,13 @@
     <td class="zelle">Price</td>
     <td class="zelle">Cover</td>
   </tr>
-  @for (book of books; track book) {
+  @for (book of (books | bookFilter:filterText); track book) {
   <tr>
     <td class="zelle">{{ book.isbn }}</td>
     <td class="zelle">{{ book.title }}</td>
     <td class="zelle">{{ book.author }}</td>
-    <td class="zelle" [ngClass]="{'on-discount': book.price < 10}">{{ book.price }}</td>
+    <td class="zelle" [ngClass]="{'on-discount': book.price < 10}">
+      {{ book.price | currency:'EUR':'symbol':'1.2-2' }}</td>
     <td class="zelle">
       @if (coverIsVisible) {
       <img [src]="book.coverUrl" [style.width.px]="50" />
