@@ -29,9 +29,10 @@ export class BookList implements OnChanges, OnInit, OnDestroy {
     console.log('BookList ngOnChanges', changes);
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit() {
     console.log('BookList ngOnInit');
-    this.books = this.bookData.getBooks();
+    this.books = await this.bookData.getBooks();
+    console.log('BookList ngOnInit', this.books);
   }
 
   public ngOnDestroy(): void {
@@ -56,6 +57,11 @@ export class BookList implements OnChanges, OnInit, OnDestroy {
   minusVote(isbn: string) {
     console.log('minusVote', isbn);
     this.changeRating(isbn, -0.1);
+  }
+
+  async deleteBook(isbn: number) {
+    await this.bookData.deleteBook(isbn.toString());
+    this.books = await this.bookData.getBooks();
   }
 
   private changeRating(isbn: string, delta: number) {

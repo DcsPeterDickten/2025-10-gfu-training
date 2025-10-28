@@ -1,8 +1,5 @@
 <p>book-list works!</p>
 
-{{books | json}}
-
-
 <button (click)='toggleCover()'>Cover {{coverIsVisible ? 'aus' : 'ein'}}blenden</button>
 
 <p>
@@ -22,6 +19,7 @@
     <td class="zelle">Price</td>
     <td class="zelle">Cover</td>
     <td class="zelle">Rating</td>
+    <td class="zelle">Aktionen</td>
   </tr>
   @for (book of (books | bookFilter:filterText:'title'); track book.isbn) {
   <tr>
@@ -38,6 +36,9 @@
     <td class="zelle">
       <rating [id]="'' + book.isbn" [stars]="book.rating" (plusVote)="plusVote($event)" (minusVote)="minusVote($event)">
       </rating>
+    </td>
+    <td class="zelle">
+      <button (click)="deleteBook(book.isbn)">Löschen</button>
     </td>
   </tr>
   }
