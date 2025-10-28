@@ -1,44 +1,24 @@
-import { CurrencyPipe, NgClass } from '@angular/common';
+import { CurrencyPipe, JsonPipe, NgClass } from '@angular/common';
 import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Book } from './book';
 import { BookFilterPipe } from '../book-filter-pipe';
+import { Rating } from '../../shared/rating/rating';
+import { BookData } from '../book-data';
 
 @Component({
   selector: 'books-list',
-  imports: [NgClass, FormsModule, CurrencyPipe, BookFilterPipe],
+  imports: [NgClass, FormsModule, CurrencyPipe, BookFilterPipe, Rating, JsonPipe],
   templateUrl: './book-list.html',
   styleUrl: './book-list.css',
 })
 export class BookList implements OnChanges, OnInit, OnDestroy {
-  books: Book[] = [
-    {
-      isbn: 1,
-      title: 'Angular 18',
-      author: 'Author 1',
-      price: 8,
-      coverUrl: 'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg',
-    },
-    {
-      isbn: 2,
-      title: 'Angular 19',
-      author: 'Author 2',
-      price: 20,
-      coverUrl: 'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg',
-    },
-    {
-      isbn: 3,
-      title: 'Angular 20',
-      author: 'Author 3',
-      price: 30,
-      coverUrl: 'https://m.media-amazon.com/images/I/71Wv+d6oP6L._AC_UY218_.jpg',
-    },
-  ];
+  books: Book[] = [];
 
   protected coverIsVisible = true;
   protected filterText: string = '';
 
-  constructor() {
+  constructor(private bookData: BookData) {
     console.log('BookList constructor');
   }
 
@@ -51,6 +31,7 @@ export class BookList implements OnChanges, OnInit, OnDestroy {
 
   public ngOnInit(): void {
     console.log('BookList ngOnInit');
+    this.books = this.bookData.getBooks();
   }
 
   public ngOnDestroy(): void {
@@ -66,5 +47,21 @@ export class BookList implements OnChanges, OnInit, OnDestroy {
 
   updateFilter(bla: any) {
     console.log('updateFilter', bla, this.filterText);
+  }
+
+  plusVote(isbn: string) {
+    console.log('plusVote', isbn);
+    this.changeRating(isbn, 0.1);
+  }
+  minusVote(isbn: string) {
+    console.log('minusVote', isbn);
+    this.changeRating(isbn, -0.1);
+  }
+
+  private changeRating(isbn: string, delta: number) {
+    const book = this.books.find((book) => book.isbn.toString() === isbn);
+    if (book) {
+      book.rating += delta;
+    }
   }
 }

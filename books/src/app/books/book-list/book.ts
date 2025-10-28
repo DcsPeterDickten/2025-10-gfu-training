@@ -5,4 +5,5 @@ export interface Book {
   price: number;
   coverUrl: string;
   comment?: string;
+  rating: number;
 }
